@@ -96,11 +96,6 @@ int cppISteamController_SteamController008_GetAnalogActionOrigins(void *linux_si
     return ((ISteamController*)linux_side)->GetAnalogActionOrigins((ControllerHandle_t)controllerHandle, (ControllerActionSetHandle_t)actionSetHandle, (ControllerAnalogActionHandle_t)analogActionHandle, (EControllerActionOrigin *)originsOut);
 }
 
-const char * cppISteamController_SteamController008_GetGlyphForActionOrigin(void *linux_side, EControllerActionOrigin eOrigin)
-{
-    return ((ISteamController*)linux_side)->GetGlyphForActionOrigin((EControllerActionOrigin)eOrigin);
-}
-
 const char * cppISteamController_SteamController008_GetStringForActionOrigin(void *linux_side, EControllerActionOrigin eOrigin)
 {
     return ((ISteamController*)linux_side)->GetStringForActionOrigin((EControllerActionOrigin)eOrigin);
@@ -159,11 +154,6 @@ int cppISteamController_SteamController008_GetGamepadIndexForController(void *li
 const char * cppISteamController_SteamController008_GetStringForXboxOrigin(void *linux_side, EXboxOrigin eOrigin)
 {
     return ((ISteamController*)linux_side)->GetStringForXboxOrigin((EXboxOrigin)eOrigin);
-}
-
-const char * cppISteamController_SteamController008_GetGlyphForXboxOrigin(void *linux_side, EXboxOrigin eOrigin)
-{
-    return ((ISteamController*)linux_side)->GetGlyphForXboxOrigin((EXboxOrigin)eOrigin);
 }
 
 EControllerActionOrigin cppISteamController_SteamController008_GetActionOriginFromXboxOrigin(void *linux_side, ControllerHandle_t controllerHandle, EXboxOrigin eOrigin)

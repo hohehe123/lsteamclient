@@ -219,8 +219,34 @@ manually_handled_methods = {
         "cppISteamNetworkingMessages_SteamNetworkingMessages002": [
             "ReceiveMessagesOnChannel"
         ],
+        "cppISteamInput_SteamInput001": [
+            "GetGlyphForActionOrigin",
+            "GetGlyphForXboxOrigin"
+        ],
+        "cppISteamInput_SteamInput002": [
+            "GetGlyphForActionOrigin",
+            "GetGlyphForXboxOrigin"
+        ],
         "cppISteamInput_SteamInput005": [
-            "EnableActionEventCallbacks"
+            "EnableActionEventCallbacks",
+            "GetGlyphPNGForActionOrigin",
+            "GetGlyphSVGForActionOrigin",
+            "GetGlyphForActionOrigin_Legacy",
+            "GetGlyphForXboxOrigin"
+        ],
+        "cppISteamController_SteamController005": [
+            "GetGlyphForActionOrigin"
+        ],
+        "cppISteamController_SteamController006": [
+            "GetGlyphForActionOrigin"
+        ],
+        "cppISteamController_SteamController007": [
+            "GetGlyphForActionOrigin",
+            "GetGlyphForXboxOrigin"
+        ],
+        "cppISteamController_SteamController008": [
+            "GetGlyphForActionOrigin",
+            "GetGlyphForXboxOrigin"
         ],
 }
 
@@ -287,16 +313,6 @@ path_conversions = [
             "w2l_arrays": [False],
             "w2l_urls": [False],
             "return_is_size": True
-        },
-        {
-            "parent_name": "GetGlyphForActionOrigin",
-            "l2w_names": [None], #return value
-            "l2w_lens": [None],
-            "l2w_urls": [None],
-            "w2l_names": [],
-            "w2l_arrays": [],
-            "w2l_urls": [],
-            "return_is_size": False
         },
         ### ISteamGameServer::SetModDir - "Just the folder name, not the whole path. I.e. "Spacewar"."
         {
@@ -558,7 +574,17 @@ path_conversions = [
             "w2l_arrays": [False],
             "w2l_urls": [False],
             "return_is_size": False
-        }
+        },
+        {
+            "parent_name": "SetInputActionManifestFilePath",
+            "l2w_names": [],
+            "l2w_lens": [],
+            "l2w_urls": [],
+            "w2l_names": ["pchInputActionManifestAbsolutePath"],
+            "w2l_arrays": [False],
+            "w2l_urls": [False],
+            "return_is_size": False
+        },
 ]
 
 def strip_const(typename):
@@ -842,15 +868,10 @@ def handle_method(cfile, classname, winclassname, cppname, method, cpp, cpp_h, e
         cfile.write("    return _r;\n")
     if path_conv and len(path_conv["l2w_names"]) > 0:
         for i in range(len(path_conv["l2w_names"])):
-            if path_conv["l2w_names"][i]:
-                cfile.write("    ")
-                if path_conv["return_is_size"]:
-                    cfile.write("path_result = ")
-                cfile.write("steamclient_unix_path_to_dos_path(path_result, %s, %s, %s, %s);\n" % (path_conv["l2w_names"][i], path_conv["l2w_names"][i], path_conv["l2w_lens"][i], to_c_bool(path_conv["l2w_urls"][i])))
-            else:
-                #string is in return value
-                #ISteamController::GetGlyphForActionOrigin is the only user here for now
-                cfile.write("    path_result = steamclient_isteamcontroller_getglyph(eOrigin, path_result);\n")
+            cfile.write("    ")
+            if path_conv["return_is_size"]:
+                cfile.write("path_result = ")
+            cfile.write("steamclient_unix_path_to_dos_path(path_result, %s, %s, %s, %s);\n" % (path_conv["l2w_names"][i], path_conv["l2w_names"][i], path_conv["l2w_lens"][i], to_c_bool(path_conv["l2w_urls"][i])))
         cfile.write("    return path_result;\n")
     if path_conv:
         for i in range(len(path_conv["w2l_names"])):
