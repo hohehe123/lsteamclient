@@ -78,7 +78,7 @@ bool __thiscall winISteamNetworking_SteamNetworking006_AllowP2PPacketRelay(winIS
     return cppISteamNetworking_SteamNetworking006_AllowP2PPacketRelay(_this->linux_side, bAllow);
 }
 
-DEFINE_THISCALL_WRAPPER(winISteamNetworking_SteamNetworking006_CreateListenSocket, 20)
+DEFINE_THISCALL_WRAPPER(winISteamNetworking_SteamNetworking006_CreateListenSocket, 36)
 SNetListenSocket_t __thiscall winISteamNetworking_SteamNetworking006_CreateListenSocket(winISteamNetworking_SteamNetworking006 *_this, int nVirtualP2PPort, SteamIPAddress_t nIP, uint16 nPort, bool bAllowUseOfPacketRelay)
 {
     TRACE("%p\n", _this);
@@ -92,7 +92,7 @@ SNetSocket_t __thiscall winISteamNetworking_SteamNetworking006_CreateP2PConnecti
     return cppISteamNetworking_SteamNetworking006_CreateP2PConnectionSocket(_this->linux_side, steamIDTarget, nVirtualPort, nTimeoutSec, bAllowUseOfPacketRelay);
 }
 
-DEFINE_THISCALL_WRAPPER(winISteamNetworking_SteamNetworking006_CreateConnectionSocket, 16)
+DEFINE_THISCALL_WRAPPER(winISteamNetworking_SteamNetworking006_CreateConnectionSocket, 32)
 SNetSocket_t __thiscall winISteamNetworking_SteamNetworking006_CreateConnectionSocket(winISteamNetworking_SteamNetworking006 *_this, SteamIPAddress_t nIP, uint16 nPort, int nTimeoutSec)
 {
     TRACE("%p\n", _this);
@@ -211,7 +211,7 @@ void __asm_dummy_vtables(void) {
 
 winISteamNetworking_SteamNetworking006 *create_winISteamNetworking_SteamNetworking006(void *linux_side)
 {
-    winISteamNetworking_SteamNetworking006 *r = HeapAlloc(GetProcessHeap(), 0, sizeof(winISteamNetworking_SteamNetworking006));
+    winISteamNetworking_SteamNetworking006 *r = alloc_mem_for_iface(sizeof(winISteamNetworking_SteamNetworking006), "SteamNetworking006");
     TRACE("-> %p\n", r);
     r->vtable = &winISteamNetworking_SteamNetworking006_vtable;
     r->linux_side = linux_side;
@@ -414,7 +414,7 @@ void __asm_dummy_vtables(void) {
 
 winISteamNetworking_SteamNetworking005 *create_winISteamNetworking_SteamNetworking005(void *linux_side)
 {
-    winISteamNetworking_SteamNetworking005 *r = HeapAlloc(GetProcessHeap(), 0, sizeof(winISteamNetworking_SteamNetworking005));
+    winISteamNetworking_SteamNetworking005 *r = alloc_mem_for_iface(sizeof(winISteamNetworking_SteamNetworking005), "SteamNetworking005");
     TRACE("-> %p\n", r);
     r->vtable = &winISteamNetworking_SteamNetworking005_vtable;
     r->linux_side = linux_side;
@@ -601,7 +601,7 @@ void __asm_dummy_vtables(void) {
 
 winISteamNetworking_SteamNetworking004 *create_winISteamNetworking_SteamNetworking004(void *linux_side)
 {
-    winISteamNetworking_SteamNetworking004 *r = HeapAlloc(GetProcessHeap(), 0, sizeof(winISteamNetworking_SteamNetworking004));
+    winISteamNetworking_SteamNetworking004 *r = alloc_mem_for_iface(sizeof(winISteamNetworking_SteamNetworking004), "SteamNetworking004");
     TRACE("-> %p\n", r);
     r->vtable = &winISteamNetworking_SteamNetworking004_vtable;
     r->linux_side = linux_side;
@@ -788,7 +788,7 @@ void __asm_dummy_vtables(void) {
 
 winISteamNetworking_SteamNetworking003 *create_winISteamNetworking_SteamNetworking003(void *linux_side)
 {
-    winISteamNetworking_SteamNetworking003 *r = HeapAlloc(GetProcessHeap(), 0, sizeof(winISteamNetworking_SteamNetworking003));
+    winISteamNetworking_SteamNetworking003 *r = alloc_mem_for_iface(sizeof(winISteamNetworking_SteamNetworking003), "SteamNetworking003");
     TRACE("-> %p\n", r);
     r->vtable = &winISteamNetworking_SteamNetworking003_vtable;
     r->linux_side = linux_side;
@@ -927,7 +927,7 @@ void __asm_dummy_vtables(void) {
 
 winISteamNetworking_SteamNetworking002 *create_winISteamNetworking_SteamNetworking002(void *linux_side)
 {
-    winISteamNetworking_SteamNetworking002 *r = HeapAlloc(GetProcessHeap(), 0, sizeof(winISteamNetworking_SteamNetworking002));
+    winISteamNetworking_SteamNetworking002 *r = alloc_mem_for_iface(sizeof(winISteamNetworking_SteamNetworking002), "SteamNetworking002");
     TRACE("-> %p\n", r);
     r->vtable = &winISteamNetworking_SteamNetworking002_vtable;
     r->linux_side = linux_side;
@@ -1050,7 +1050,7 @@ void __asm_dummy_vtables(void) {
 
 winISteamNetworking_SteamNetworking001 *create_winISteamNetworking_SteamNetworking001(void *linux_side)
 {
-    winISteamNetworking_SteamNetworking001 *r = HeapAlloc(GetProcessHeap(), 0, sizeof(winISteamNetworking_SteamNetworking001));
+    winISteamNetworking_SteamNetworking001 *r = alloc_mem_for_iface(sizeof(winISteamNetworking_SteamNetworking001), "SteamNetworking001");
     TRACE("-> %p\n", r);
     r->vtable = &winISteamNetworking_SteamNetworking001_vtable;
     r->linux_side = linux_side;
