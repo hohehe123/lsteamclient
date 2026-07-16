@@ -204,11 +204,9 @@ void __thiscall winISteamApps_STEAMAPPS_INTERFACE_VERSION008_RequestAllProofOfPu
 DEFINE_THISCALL_WRAPPER(winISteamApps_STEAMAPPS_INTERFACE_VERSION008_GetFileDetails, 8)
 SteamAPICall_t __thiscall winISteamApps_STEAMAPPS_INTERFACE_VERSION008_GetFileDetails(winISteamApps_STEAMAPPS_INTERFACE_VERSION008 *_this, const char * pszFileName)
 {
-    char lin_pszFileName[PATH_MAX];
-    steamclient_dos_path_to_unix_path(pszFileName, lin_pszFileName, 0);
     uint32 path_result;
     TRACE("%p\n", _this);
-    path_result = cppISteamApps_STEAMAPPS_INTERFACE_VERSION008_GetFileDetails(_this->linux_side, pszFileName ? lin_pszFileName : NULL);
+    path_result = cppISteamApps_STEAMAPPS_INTERFACE_VERSION008_GetFileDetails(_this->linux_side, pszFileName);
 }
 
 DEFINE_THISCALL_WRAPPER(winISteamApps_STEAMAPPS_INTERFACE_VERSION008_GetLaunchCommandLine, 12)
